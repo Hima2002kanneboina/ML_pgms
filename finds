@@ -1,0 +1,27 @@
+1.Implement and demonstrate the FIND-S algorithm to finding the most specific hypothesis based ona
+given set of data samples. Read the training data from a .CSV file.
+import pandas as pd
+d=pd.read_csv("/content/ENJOYSPORT.csv")
+d=pd.DataFrame(d)
+print(d)
+
+h=[]
+t=0
+for i in range(len(d)):
+l=list(d.loc[i])
+if l[len(l)-1]==1:
+l.pop()
+h.extend(l)
+k=i
+break
+print("H",t+1,":",h)
+t=t+2
+l=[]
+for i in range(k+1,len(d)):
+l=list(d.loc[i])
+if l[len(l)-1]==1:
+for j in range(len(h)):
+if h[j]!=l[j]:
+h[j]='?'
+print("H",t,":",h)
+t=t+1
